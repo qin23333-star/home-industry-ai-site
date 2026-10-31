@@ -28,6 +28,8 @@ h1,h2{text-wrap:balance}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .sales-section{padding-top:90px;padding-bottom:90px;scroll-margin-top:90px}.sales-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:36px}.sales-layout input,.sales-layout textarea{display:block;width:100%;padding:12px;border:1px solid #d8ddd7;background:#fff;border-radius:8px;font:inherit;box-sizing:border-box}.sales-customers{display:grid;gap:12px;margin:20px 0}.sales-customer{text-align:left;display:grid;gap:9px;padding:20px;border:1px solid #d8ddd7;border-radius:12px;background:#fff;cursor:pointer;color:inherit}.sales-customer.active{border-color:#507762;background:#eef4ee}.sales-customer span,.sales-customer small{color:#68746a}.sales-detail{min-width:0;padding:28px;background:#f4f6f1;border-radius:20px}.sales-detail h3{font-size:24px;margin:12px 0}.sales-tabs{display:flex;gap:12px;margin:22px 0}.sales-event{padding:18px;margin:12px 0;border:1px solid #dde3da;border-radius:12px;background:white;overflow-wrap:anywhere}.sales-event time{display:block;color:#6b756d;margin-bottom:8px}.sales-event p{line-height:1.7}.sales-empty{padding:24px 0}#sales-form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}#sales-form h3,.sales-wide{grid-column:1/-1}#sales-form label{display:grid;gap:8px;min-width:0}#sales-form .button{font-size:13px;padding:12px 16px}.sales-form-actions{display:flex;gap:10px;flex-wrap:wrap}.sales-event .button{margin:8px 8px 0 0}
 
+.sales-agent-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:32px 0}.sales-agent-flow span{padding:16px;background:#eaf0e7;border-radius:10px;color:#355c47;font-size:13px}.sales-agent-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:24px}.sales-agent-chat,.sales-boss-report{min-width:0;border:1px solid #d9e1d5;border-radius:20px;padding:28px;background:#f3f6ef}.sales-boss-report{background:#e9efe4}.sales-agent-heading{display:flex;gap:12px;align-items:flex-start;margin-bottom:24px}.sales-agent-heading strong{font-size:21px}.sales-agent-heading p,.sales-report-note{font-size:13px;line-height:1.8;color:#697665}.sales-agent-chat textarea{box-sizing:border-box;width:100%;font:inherit;line-height:1.8;padding:15px;border:1px solid #d6ded1;border-radius:10px;margin:12px 0 20px;background:white}.sales-agent-grid h4{border-top:1px solid #e1e6dc;padding-top:18px;margin-top:22px;color:#355c47}.sales-records-details{margin-top:32px}.sales-records-details>summary{padding:20px 0;cursor:pointer;color:#355c47}.sales-records-details .sales-layout{padding-top:18px}.sales-source{white-space:pre-wrap}.sales-agent-grid .sales-event{font-size:14px}.sales-agent-grid .sales-event p{overflow-wrap:anywhere}.sales-agent-grid small{color:#6f7c6b}.sales-agent-grid .button{font-size:13px;padding:12px 16px}.sales-agent-grid label{font-size:14px}
+
 /* 手机与平板交互增强；与桌面共用业务状态和表单。 */
 .mobile-nav,.order-progress-toggle{display:none}
 .dialog-copy-text{width:100%;min-height:180px;padding:12px;border:1px solid #c8d5bb;border-radius:6px;background:#fff;font:13px/1.8 var(--body);color:var(--ink);resize:vertical}
@@ -79,12 +81,14 @@ h1,h2{text-wrap:balance}
 }
 @media(max-width:760px){.sales-section{padding-top:48px;padding-bottom:48px;scroll-margin-top:75px}.sales-layout{grid-template-columns:1fr;gap:20px}.sales-customers{display:flex;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:10px}.sales-customer{min-width:220px;scroll-snap-align:start}.sales-detail{padding:18px}#sales-form{grid-template-columns:1fr}#sales-form h3,.sales-wide{grid-column:auto}.sales-layout input,.sales-layout textarea{font-size:16px}.sales-form-actions .button{width:100%;min-height:44px}.mobile-nav a{min-width:0;flex:1}.mobile-nav{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(max-width:760px){.sales-layout{grid-template-columns:minmax(0,1fr)}.sales-layout>div{min-width:0;max-width:100%}.sales-customers{max-width:100%}}
+
+@media(max-width:760px){.sales-agent-flow{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:22px 0}.sales-agent-flow span{font-size:11px;padding:13px 10px}.sales-agent-grid{grid-template-columns:minmax(0,1fr)}.sales-agent-chat,.sales-boss-report{padding:18px}.sales-agent-chat textarea{font-size:16px}.sales-agent-grid .sales-form-actions .button{width:100%;min-height:44px}}
 </style>
   
   <script type="module">const DEFAULT_CONFIG = Object.freeze({ material: 'wpc', opening: 'single', finish: 'oak', height: 2100, width: 900, wall: 180, quantity: 96, glass: false, louver: false, hinge: false });
 const DEFAULT_RULE = Object.freeze({ days: 2, text: '发货窗口临近，若关键工序未完成，提醒生产负责人；涉及返修时，同时核对复检与包装时间。' });
 const ROLES = Object.freeze([
-  { id: 'sales', name: '销售智能体', short: '销售', icon: 'message', subtitle: '从客户一句话，到一份完整报价', prompt: '这批 96 套木塑门，帮我核对配置并生成报价。', actions: ['核对配置', '查询产品', '生成报价'] },
+  { id: 'sales', name: '销售智能体', short: '销售', icon: 'message', subtitle: '整理客户沟通，接续跟进，汇总老板晚报', prompt: '这批 96 套木塑门，帮我核对配置并生成报价。', actions: ['整理客户沟通', '提炼下一步', '准备老板晚报'] },
   { id: 'design', name: '研发工艺智能体', short: '研发', icon: 'ruler', subtitle: '找到相似经验，理清技术条件', prompt: '这批门想改用暗合页，需要核对哪些技术条件？', actions: ['匹配工艺', '查找案例', '整理确认单'] },
   { id: 'purchase', name: '采购智能体', short: '采购', icon: 'layers', subtitle: '供应资源与物料成本，随问随查', prompt: '这批门的配套物料是否齐备？帮我核对供应条件。', actions: ['核对需求', '查可用量', '匹配资源'] },
   { id: 'production', name: '生产智能体', short: '生产', icon: 'factory', subtitle: '随手报工，进度随之更新', prompt: 'DY-1036 门扇加工完成 48 扇，其中 2 扇需要返修。', actions: ['识别订单', '提取报工', '更新进度'] },
@@ -206,6 +210,17 @@ function compareOrders(original, entered) {
   return ['material','opening','height','width','wall','quantity','finish'].map(field => ({ field, original: original[field], entered: entered[field], different: String(original[field]) !== String(entered[field]) }));
 }
 
+function salesConversationPreview(text){
+ const value=String(text||'').trim();if(!value||value.length>6000)throw Error('请填写6000字以内的客户沟通。');
+ const label=name=>value.match(new RegExp('(?:^|\\n)'+name+'[：:]\\s*([^\\n]+)'))?.[1]?.trim()||'';
+ const customer=label('客户名称');if(!customer)throw Error('请先补充客户名称，例如“客户名称：海湾建材”。');
+ return {customer,owner:label('业务员')||label('负责人'),request:label('客户诉求')||value.split('\n').find(x=>/^客户说/.test(x))?.replace(/^客户说[：:]?/,'')||'',conditions:label('已谈条件')||value.split('\n').find(x=>/^我回复/.test(x))?.replace(/^我回复[：:]?/,'')||'',next:label('下一步'),nextDate:label('下次跟进'),assistance:label('老板协助'),original:value};
+}
+function salesDailyPreview(records,date){
+ const today=records.filter(r=>r.date===date),active=r=>!['已完成','无需跟进'].includes(r.status);
+ return {today,due:records.filter(r=>active(r)&&r.nextDate&&r.nextDate<=date),upcoming:records.filter(r=>active(r)&&r.nextDate&&r.nextDate>date),assist:today.filter(r=>r.assistance)};
+}
+
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -265,12 +280,12 @@ function selectRole(role, focus = false) {
   $('#agent-icon').innerHTML = icon(entry.icon);
   $('#agent-panel').setAttribute('aria-labelledby', `role-${role}`);
   $('#chat-messages').replaceChildren();
-  addMessage('agent', `我可以帮你${{ sales: '核对产品配置、计算报价、找到客户需要的资料', design: '整理结构与工艺条件，调用相似经验', purchase: '核对备料、查找供应资源和采购成本', production: '整理报工、更新订单进度、记录返修情况', delivery: '展开包装、安排装柜、生成师傅指导单', owner: '汇总订单状态、检查企业规则、整理需要介入的事情' }[role]}。我们继续看 <strong>DY-1036</strong> 这笔订单。`);
+  addMessage('agent', `我可以帮你${{ sales: '整理客户沟通、接续跟进和准备老板晚报，也能核对产品配置与报价', design: '整理结构与工艺条件，调用相似经验', purchase: '核对备料、查找供应资源和采购成本', production: '整理报工、更新订单进度、记录返修情况', delivery: '展开包装、安排装柜、生成师傅指导单', owner: '汇总订单状态、检查企业规则、整理需要介入的事情' }[role]}。我们继续看 <strong>DY-1036</strong> 这笔订单。`);
   const prompt = role === 'sales' ? `这批 ${state.config.quantity} 套${state.config.material === 'wpc' ? '木塑门' : '实木复合门'}，帮我核对配置并生成报价。` : role === 'production' ? `DY-1036 门扇加工完成 ${Math.min(48,state.config.quantity)} 扇，其中 ${Math.min(2,state.config.quantity)} 扇需要返修。` : entry.prompt;
   addMessage('user', escapeHTML(prompt));
   respond(prompt, role);
   const prompts = {
-    sales: ['查客户历史报价', '记录客户跟进', '重新生成当前配置报价', '核对客户原单', '客户想提前发货', '这款门的产品资料'],
+    sales: ['整理今天客户沟通', '查看客户晚报', '查客户历史报价', '记录客户跟进', '重新生成当前配置报价', '核对客户原单', '客户想提前发货', '这款门的产品资料'],
     design: ['查看技术确认单', '查询暗合页工艺条件', '客户想提前发货'],
     purchase: ['核对备料与库存', '查供应商与采购成本', '客户想提前发货'],
     production: [`加工完成 ${Math.min(48,state.config.quantity)} 扇，其中 ${Math.min(2,state.config.quantity)} 扇返修`, '看看当前订单进度', '客户想提前发货'],
@@ -283,6 +298,8 @@ function selectRole(role, focus = false) {
   $('#chat-messages').scrollTop = 0;
 }
 function responseSales(text) {
+ if(/沟通|晚报|日报/.test(text)){addMessage('agent','<p>员工转发当天的客户沟通，我先整理诉求、已谈条件和下一步；本人核对归档后，再汇总老板晚报，列出该跟谁、谁负责、何时联系及需要老板介入的事项。</p><a class="result-button" href="#customers">体验销售跟进智能体 ↓</a>');return;}
+
  if(/客户.*(?:历史|跟进|档案)|历史报价|记录.*客户|查客户/.test(text)){addMessage('agent','<p>客户档案、历次报价和每次跟进分别保存。可以按客户查找，核对报价日期、配置与条款，也可以记录下一步联系时间。</p><a class="result-button" href="#customers">打开客户管理 ↓</a>');return;}
 
   if (/原单|核单|订单核对/.test(text)) { const diffs = compareOrders(customerOrder,state.config).filter(i=>i.different); addMessage('agent', `<p>已将客户原单与当前接单记录逐项对照，发现 <strong>${diffs.length} 项差异</strong>。请核对后再同步配置。</p>${resultButton('并排查看订单差异','compare-order')}`); return; }
@@ -306,6 +323,8 @@ function responseSales(text) {
 }
 function configSummary() { const c = state.config; return `<div class="result-line"><span>产品</span><span>${c.material === 'wpc' ? '木塑门' : '实木复合门'} · ${{ single: '单开', double: '双开', asymmetric: '子母' }[c.opening]}</span></div><div class="result-line"><span>尺寸 / 墙厚</span><span>${c.height} × ${c.width} / ${c.wall} mm</span></div>`; }
 function respond(text, role = state.role) {
+ if(/客户.*沟通|客户晚报|销售晚报/.test(text))return responseSales(text);
+
  if(/客户.*(?:历史|跟进|档案)|历史报价|查客户/.test(text))return responseSales(text);
   if (/提前发|提前交|急单/.test(text)) {
     addMessage('agent', `<p>我会把<strong>生产进度、物料到货和交付安排</strong>放在一起核对，再调用企业急单处理规则。</p>${resultButton('展开跨部门协同', 'collaborate')}`);
@@ -355,7 +374,7 @@ async function sendMessage(text) {
   if (version !== chatVersion) return;
   try {
     const target = routeMessage(value, state.role);
-    const known = /客户|跟进|历史报价|原单|核单|订单核对|报价|价格|配置|产品|资料|图片|门型|尺寸|门高|门宽|墙厚|数量|单开|双开|子母|采购|供应|库存|备料|物料|工艺|技术|结构|研发|暗合页|报工|返修|加工|做完|进度|装柜|装箱|集装箱|包装|齐套|老板|异常|风险|今天|全貌|经验|规则|提前发|提前交|急单/.test(value);
+    const known = /沟通|晚报|日报|客户|跟进|历史报价|原单|核单|订单核对|报价|价格|配置|产品|资料|图片|门型|尺寸|门高|门宽|墙厚|数量|单开|双开|子母|采购|供应|库存|备料|物料|工艺|技术|结构|研发|暗合页|报工|返修|加工|做完|进度|装柜|装箱|集装箱|包装|齐套|老板|异常|风险|今天|全貌|经验|规则|提前发|提前交|急单/.test(value);
     if (!known) addMessage('agent', '<p>请补充想处理的业务环节和具体条件。你可以问<strong>报价配置、备料、工艺、报工、装柜或订单异常</strong>，也可以点击下面的常用问题。</p>');
     else if (/规则|经验/.test(value) && state.role === 'owner') respond(value, 'owner');
     else respond(value, target);
@@ -660,6 +679,18 @@ function salesSetMode(mode){for(const key of ['name','owner','phone','region','s
 function salesPreview(data){salesPending=data;$('#sales-preview').innerHTML=`<div class="sales-event"><strong>请核对${{followup:'跟进记录',edit:'客户修改',create:'新增客户',quote:'报价归档'}[data.mode]}预览</strong><p>${escapeHTML(data.name)} · ${escapeHTML(data.product)}</p><p>负责人：${escapeHTML(data.owner)} · 电话：${escapeHTML(data.phone)} · 地区：${escapeHTML(data.region)} · 来源：${escapeHTML(data.source)}</p><p>${escapeHTML(data.note||'')} ${escapeHTML(data.price||'')} ${escapeHTML(data.config||'')}</p><p>下次跟进：${escapeHTML(data.next||'未填写')}</p><button type="button" class="button primary" id="sales-confirm">确认保存</button><button type="button" class="button secondary" id="sales-cancel">取消</button></div>`;
  $('#sales-cancel').onclick=()=>{salesPending=null;$('#sales-preview').replaceChildren()};$('#sales-confirm').onclick=()=>{const d=salesPending;if(!d)return;const {mode,target,date,price,config,note,...profile}=d;if(mode==='create'){salesCurrent={...profile,id:'showcase-'+Date.now(),quotes:[],followups:[]};salesCustomers.push(salesCurrent)}else{if(target!==salesCurrent.id){toast('客户已切换，请重新预览');return}if(mode==='edit')Object.assign(salesCurrent,profile);else if(mode==='quote')salesCurrent.quotes.push({date,price,config,note});else {salesCurrent.followups.push({date,note});salesCurrent.next=d.next;}}salesTab=mode==='quote'?'quotes':'followups';salesSetMode('followup');salesRender();toast('已保存到当前页面客户记录')};}
 $('#sales-search').oninput=salesRender;$$('[data-sales-tab]').forEach(el=>el.onclick=()=>{salesTab=el.dataset.salesTab;salesRender()});$('#sales-new').onclick=()=>{salesSetMode('create');salesForm.reset();salesForm.elements.name.focus()};$('#sales-edit').onclick=()=>salesSetMode('edit');salesForm.oninput=()=>{salesPending=null;$('#sales-preview').replaceChildren()};salesForm.onsubmit=event=>{event.preventDefault();const d=Object.fromEntries(new FormData(salesForm));if(!d.name.trim())return;salesPreview({...d,mode:salesMode,target:salesCurrent.id,date:new Date().toISOString().slice(0,10)})};$('#sales-quote').onclick=()=>{const q=quote(state.config);salesSetMode('quote');salesPreview({...Object.fromEntries(new FormData(salesForm)),name:salesCurrent.name,mode:'quote',target:salesCurrent.id,date:new Date().toISOString().slice(0,10),price:money(q.unit)+' / 套',config:`${q.config.height} × ${q.config.width} mm · ${q.config.quantity}套`,note:'当前页面配置报价快照；条款与有效期需在实际业务中填写。'})};salesSetMode('followup');salesRender();
+
+
+// Interaction showcase: no model, external chats or scheduled messages.
+const salesChatExample='客户名称：海湾建材\n业务员：陈敏\n客户说400套木塑门，先对照原来的门型和报价，周一再确认尺寸。\n我回复先核对规格，运费另外算。\n下一步：周一跟客户确认尺寸和运费。\n下次跟进：2026-11-02\n老板协助：确认这批量的报价空间。';
+let salesChatPending=null;const confirmedSalesChats=[];
+const salesToday=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+$('#sales-chat-input').value=salesChatExample;
+$('#sales-chat-example').onclick=()=>{$('#sales-chat-input').value=salesChatExample;salesChatPending=null;$('#sales-chat-result').innerHTML='<p>已放入一段员工转发的客户沟通，请点击整理。</p>'};
+$('#sales-chat-input').oninput=()=>{salesChatPending=null;$('#sales-chat-result').innerHTML='<p>沟通内容已变化，请重新整理后确认。</p>'};
+$('#sales-chat-summarize').onclick=()=>{try{const p=salesConversationPreview($('#sales-chat-input').value);salesChatPending=p;const items=[['客户',p.customer],['负责业务员',p.owner],['客户诉求',p.request],['已谈条件',p.conditions],['下一步',p.next],['下次跟进',p.nextDate],['老板协助',p.assistance]];$('#sales-chat-result').innerHTML='<div class="sales-event"><strong>已整理，请核对后归档</strong>'+items.map(([k,v])=>'<p><b>'+escapeHTML(k)+'：</b>'+escapeHTML(v||'未提供')+'</p>').join('')+'<details><summary>对照本次转发原文</summary><p class="sales-source">'+escapeHTML(p.original)+'</p></details><button class="button primary" id="sales-chat-confirm">确认归档</button><button class="button secondary" id="sales-chat-cancel">取消</button></div>';$('#sales-chat-cancel').onclick=()=>{salesChatPending=null;$('#sales-chat-result').innerHTML='<p>本次整理已取消，没有归档。</p>'};$('#sales-chat-confirm').onclick=()=>{if(!salesChatPending)return;const c=salesChatPending,record={...c,date:salesToday(),note:c.request||c.original};confirmedSalesChats.push(record);let customer=salesCustomers.find(x=>x.name===c.customer);if(!customer){customer={id:'showcase-'+Date.now(),name:c.customer,owner:c.owner,product:'',quotes:[],followups:[]};salesCustomers.push(customer)}customer.followups.push({...record,note:[c.request,c.conditions,c.next].filter(Boolean).join('；')});customer.next=c.nextDate;salesCurrent=customer;salesTab='followups';salesRender();salesChatPending=null;$('#sales-chat-result').innerHTML='<div class="sales-event"><strong>已确认归档</strong><p>'+escapeHTML(c.customer)+' · 本次沟通已进入客户跟进与当天晚报。</p><button class="button secondary" id="sales-open-daily">查看老板晚报</button></div>';$('#sales-open-daily').onclick=renderSalesDaily;renderSalesDaily();};}catch(e){salesChatPending=null;$('#sales-chat-result').textContent=e.message}};
+function renderSalesDaily(){const result=salesDailyPreview(confirmedSalesChats,salesToday()),line=r=>'<p><strong>'+escapeHTML(r.customer)+'</strong> · '+escapeHTML(r.owner||'负责人未提供')+'<br>'+escapeHTML(r.next||'下一步未提供')+'<br>'+escapeHTML(r.nextDate||'跟进时间未提供')+'</p>';$('#sales-daily-result').innerHTML='<div class="sales-event"><div class="eyebrow">'+salesToday()+' · 待发送预览</div><h3>客户沟通晚报</h3><p>今日已确认 '+result.today.length+' 条沟通 · '+new Set(result.today.map(x=>x.customer)).size+' 位客户</p><h4>今日客户进展</h4>'+(result.today.length?result.today.map(r=>'<p><strong>'+escapeHTML(r.customer)+'</strong><br>'+escapeHTML(r.request||r.original)+'<br>已谈条件：'+escapeHTML(r.conditions||'未提供')+'</p>').join(''):'<p>今天尚未收到已确认归档的沟通，不能据此判断员工没有联系客户。</p>')+'<h4>到期或逾期，需要跟进</h4>'+(result.due.map(line).join('')||'<p>当前没有已归档的到期事项。</p>')+'<h4>后续跟进安排</h4>'+(result.upcoming.map(line).join('')||'<p>当前没有已填写时间的后续安排。</p>')+'<h4>需要老板协助</h4>'+(result.assist.map(r=>'<p>'+escapeHTML(r.customer)+'：'+escapeHTML(r.assistance)+'</p>').join('')||'<p>当前记录没有明确提出老板协助事项。</p>')+'<small>仅汇总本人确认的沟通；未发送消息。</small></div>';}
+$('#sales-daily-preview').onclick=renderSalesDaily;
 </script>
 </head>
 <body>
@@ -710,10 +741,15 @@ $('#sales-search').oninput=salesRender;$$('[data-sales-tab]').forEach(el=>el.onc
     </section>
 
     <section id="customers" class="section-wrap sales-section">
- <div class="section-heading"><div><div class="eyebrow">销售 — 从第一次沟通到再次下单</div><h2>半年前的报价，<span class="serif-em">现在也找得到。</span></h2></div><p>客户档案、报价历史、跟进记录放在一起。<br>手机随手记录，核对后保存，下次接着谈。</p></div>
+ <div class="section-heading"><div><div class="eyebrow">销售 — 从第一次沟通到再次下单</div><h2>白天跟进客户，<span class="serif-em">晚上看清进展。</span></h2></div><p>员工转发沟通，销售智能体整理客户诉求与下一步。<br>本人确认后归档，晚间给老板一份跟进简报。</p></div>
+ <div class="sales-agent-flow"><span>01 员工转发沟通</span><span>02 智能体提炼</span><span>03 本人核对归档</span><span>04 老板查看晚报</span></div>
+ <div class="sales-agent-grid"><section class="sales-agent-chat"><div class="sales-agent-heading"><span data-icon="message"></span><div><strong>销售跟进智能体</strong><p>把客户聊过的事，变成接下来要做的事。</p></div></div><label for="sales-chat-input">今天和客户聊了什么？</label><textarea id="sales-chat-input" rows="7" maxlength="6000"></textarea><div class="sales-form-actions"><button class="button primary" id="sales-chat-summarize">整理客户沟通</button><button class="button secondary" id="sales-chat-example">放入一段沟通</button></div><div id="sales-chat-result" aria-live="polite"><p class="sales-empty">转发沟通后，先核对客户诉求、已谈条件、下一步和负责人，再确认归档。</p></div></section>
+ <section class="sales-boss-report"><div class="sales-agent-heading"><span data-icon="spark"></span><div><strong>老板 · 客户沟通晚报</strong><p>今天谈到哪里，明天该盯哪些事。</p></div></div><button class="button primary" id="sales-daily-preview">生成晚报预览</button><div id="sales-daily-result" aria-live="polite"><p class="sales-empty">按当天已确认的沟通，汇总进展、到期待办、后续跟进与需要老板协助的事项。</p></div><p class="sales-report-note">当前可查看晚报预览，尚未开启定时发送。</p></section></div>
+ <details class="sales-records-details"><summary>查看客户档案、历史报价与跟进总表</summary>
  <div class="sales-layout"><div><label for="sales-search">查客户、产品或跟进内容</label><input id="sales-search" placeholder="搜索客户或意向产品"><div id="sales-customers" class="sales-customers"></div><button class="button secondary" id="sales-new">新增客户档案 ＋</button></div>
  <div class="sales-detail"><div id="sales-profile"></div><div class="sales-tabs" role="group" aria-label="客户记录"><button class="button secondary" data-sales-tab="quotes">报价历史</button><button class="button secondary" data-sales-tab="followups">跟进记录</button></div><div id="sales-timeline"></div>
  <form id="sales-form"><h3 id="sales-form-title">新增跟进记录</h3><label>客户名称<input name="name" required maxlength="80"></label><label>负责业务员<input name="owner" maxlength="80"></label><label>联系电话<input name="phone" maxlength="80"></label><label>所在地区<input name="region" maxlength="80"></label><label>客户来源<input name="source" maxlength="80"></label><label>意向产品<input name="product" maxlength="100"></label><label>下次跟进<input name="next" type="date"></label><label class="sales-wide">跟进内容 / 报价说明<textarea name="note" required rows="3" maxlength="1500"></textarea></label><div class="sales-wide sales-form-actions"><button class="button primary" type="submit">整理并预览</button><button class="button secondary" type="button" id="sales-edit">编辑客户资料</button><button class="button secondary" type="button" id="sales-quote">把当前配置存为报价</button></div><div id="sales-preview" class="sales-wide" aria-live="polite"></div></form></div></div>
+ </details>
  </section>
  <section id="collaboration" class="collaboration-section">
       <div class="section-wrap"><div class="section-heading"><div><div class="eyebrow">02 — 一笔订单，贯穿整个工厂</div><h2>消息到哪里，<span class="serif-em">协作就到哪里。</span></h2></div><p>销售问交期，背后需要多个部门一起回答。<br>让信息连续流转，让每个岗位各司其职。</p></div>
